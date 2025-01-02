@@ -1,0 +1,4 @@
+Display Name Generation contains:
+    Simple --- Removes Trailing Parentheses from test method name
+    ReplaceUnderScores --- Replace underscores in test method name with spaces
+    IndicativeSentences --- Generate sentence based on test class name and test method name

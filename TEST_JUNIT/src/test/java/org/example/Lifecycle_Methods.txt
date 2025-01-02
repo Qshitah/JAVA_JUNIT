@@ -1,0 +1,33 @@
+
+    /*
+       @BeforeEach Method is executed before each test method
+       Useful for common set up code : creating objects, setting up test data
+     */
+
+    /*
+        @AfterEach methods is executed after each test method
+        Useful for common clean up code: releasing resources, cleaning up test data
+     */
+
+    /*
+        @BeforeAll is executed only once , before all test methods
+        Useful for getting database connections, connecting to servers
+     */
+    /*
+        @AfterAll is executed only once, after all test methods
+        Useful for releasing database connections,disconnecting from servers
+     */
+
+
+
+     BeforeAll
+
+        BeforeEach
+        Test
+        AfterEach
+
+        BeforeEach
+        Test
+        AfterEach
+
+     AfterAll
