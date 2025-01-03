@@ -1,33 +1,78 @@
+JUnit 5 Test Lifecycle and Annotations Documentation
 
-    /*
-       @BeforeEach Method is executed before each test method
-       Useful for common set up code : creating objects, setting up test data
-     */
+Annotations provide a way to control the lifecycle and behavior of test methods in JUnit 5. Here's an overview of the key annotations and their use cases:
 
-    /*
-        @AfterEach methods is executed after each test method
-        Useful for common clean up code: releasing resources, cleaning up test data
-     */
+---
 
-    /*
-        @BeforeAll is executed only once , before all test methods
-        Useful for getting database connections, connecting to servers
-     */
-    /*
-        @AfterAll is executed only once, after all test methods
-        Useful for releasing database connections,disconnecting from servers
-     */
+### @BeforeEach
+- **Description**: 
+  The method annotated with `@BeforeEach` is executed **before each test method**.
+- **Purpose**:
+  Useful for common setup tasks, such as creating objects and initializing test data.
+- **Example Usage**:
+  Setting up a new instance of the class being tested or resetting state before each test.
 
+---
 
+### @AfterEach
+- **Description**:
+  The method annotated with `@AfterEach` is executed **after each test method**.
+- **Purpose**:
+  Useful for common cleanup tasks, such as releasing resources or cleaning up test data.
+- **Example Usage**:
+  Closing file streams or clearing temporary data structures after each test.
 
-     BeforeAll
+---
 
-        BeforeEach
-        Test
-        AfterEach
+### @BeforeAll
+- **Description**:
+  The method annotated with `@BeforeAll` is executed **once before all test methods in the class**.
+- **Purpose**:
+  Useful for tasks that need to be performed only once, such as establishing a database connection or starting a server.
+- **Example Usage**:
+  Initializing shared resources for all tests in the class.
 
-        BeforeEach
-        Test
-        AfterEach
+---
 
-     AfterAll
+### @AfterAll
+- **Description**:
+  The method annotated with `@AfterAll` is executed **once after all test methods in the class**.
+- **Purpose**:
+  Useful for releasing resources or performing cleanup tasks after all tests are complete.
+- **Example Usage**:
+  Disconnecting from a database or shutting down servers.
+
+---
+
+### Test Execution Flow
+The order of execution for a test class using these annotations is as follows:
+
+1. **@BeforeAll** (Executed only once before all test methods)
+2. **@BeforeEach** (Executed before each test method)
+3. **@Test** (The test method itself)
+4. **@AfterEach** (Executed after each test method)
+5. **@AfterAll** (Executed only once after all test methods)
+
+---
+
+### Example Execution Order
+
+1. **BeforeAll**  
+   *(Executed once before all test methods)*
+
+2. **BeforeEach**  
+   *(Executed before the first test method)*  
+   - **Test Method 1**
+   - **AfterEach**
+
+3. **BeforeEach**  
+   *(Executed before the second test method)*  
+   - **Test Method 2**
+   - **AfterEach**
+
+4. **AfterAll**  
+   *(Executed once after all test methods)*
+
+---
+
+This structure ensures that the tests are isolated and repeatable, with proper setup and cleanup for each method.
