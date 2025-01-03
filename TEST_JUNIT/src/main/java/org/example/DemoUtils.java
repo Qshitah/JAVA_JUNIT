@@ -23,4 +23,18 @@ public class DemoUtils {
     public String getAcademyDuplicate() {
         return academyDuplicate;
     }
+
+    public String throwException(int a) throws Exception{
+        if(a < 0){
+            throw new Exception("Value should be greater than zero");
+        }
+
+        return String.valueOf(a);
+    }
+
+    public void checkTimeout() throws InterruptedException{
+        System.out.println("I'm going to sleep");
+        Thread.sleep(2000);
+        System.out.println("Sleeping over");
+    }
 }

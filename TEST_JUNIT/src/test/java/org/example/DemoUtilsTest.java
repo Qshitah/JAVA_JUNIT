@@ -8,12 +8,14 @@ package org.example;
 
 import org.junit.jupiter.api.*;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -42,6 +44,7 @@ public class DemoUtilsTest {
     }
 
     @Test
+    @Order(1)
     void testEqualsAndNotEquals() {
         //Set Up
         System.out.println("Running Test: testEqualsAndNotEquals");
@@ -51,6 +54,7 @@ public class DemoUtilsTest {
     }
 
     @Test
+    @Order(2)
     void testNullAndNotNull(){
         System.out.println("Running Test: testNullAndNotNull");
 
@@ -59,6 +63,7 @@ public class DemoUtilsTest {
     }
 
     @Test
+    @Order(3)
     void testSameAndNotSame(){
         System.out.println("Running Test: testSameAndNotSame");
 
@@ -70,6 +75,7 @@ public class DemoUtilsTest {
 
     @DisplayName("Array Equals")
     @Test
+    @Order(4)
     void testArrayEquals(){
         String[] strArr = {"Test22","Test33","Test44"};
         String[] strArr2 = {"Test22","Test33","Test44"};
@@ -79,12 +85,29 @@ public class DemoUtilsTest {
 
     @DisplayName("Test Iterable Equals")
     @Test
+    @Order(6)
     void testIterableEquals(){
         List<String> theList = Arrays.asList("Test22","Test33","Test44");
         List<String> theList2 = Arrays.asList("Test22","Test33","Test44");
 
         System.out.println("Test Iterable Equals");
         assertIterableEquals(theList,theList2,"Iterables equal");
+    }
+
+    @DisplayName("Throws and Does Not Throws")
+    @Test
+    @Order(5)
+    void testThrowsAndDoesNotThrow(){
+        assertThrows(Exception.class,() -> demoUtils.throwException(-1),"Should throw an exception");
+
+        assertDoesNotThrow(() -> demoUtils.throwException(2), "Should not throw an exception");
+    }
+
+    @DisplayName("Timeout")
+    @Test
+    @Order(7)
+    void testTimeOut(){
+       assertTimeoutPreemptively(Duration.ofSeconds(3), () -> demoUtils.checkTimeout(),"Method should execute in 3 seconds");
     }
 
 }
